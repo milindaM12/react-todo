@@ -1,1 +1,22 @@
+name: Build & Push Docker Image
 
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+    - name: Build Docker image
+      run: docker build -t your_dockerhub_username/react-todo:latest .
+
+    - name: Push to Docker Hub
+      run: docker push your_dockerhub_username/react-todo:latest
