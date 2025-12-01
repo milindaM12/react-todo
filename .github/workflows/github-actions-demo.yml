@@ -16,7 +16,7 @@ jobs:
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
     - name: Build Docker image
-      run: docker build -t your_dockerhub_username/react-todo:latest .
+      run: docker build -t milindam/react-todo:latest .
 
     - name: Push to Docker Hub
-      run: docker push your_dockerhub_username/react-todo:latest
+      run: docker push milindam/react-todo:latest
